@@ -1,24 +1,25 @@
-var numbers = document.querySelectorAll('.number'),
+const numbers = document.querySelectorAll('.number'),
   operations = document.querySelectorAll('.operation'),
   resultBtn = document.getElementById('result'),
   clearBtn = document.getElementById('clear'),
-  display = document.getElementById('scoreboard'),
-  MemoryCurrentNumber = 0,
-  MemoryNewNumber = false,
-  MemoryPandingOperation = "";
+  display = document.getElementById('scoreboard');
+
+let memoryCurrentNumber = 0,
+  memoryNewNumber = false,
+  memoryOperation = "";
 
 //Numbers
-for (var i = 0; i < numbers.length; i++) {
-  var number = numbers[i];
-  number.addEventListener('click', function(e) {
+for (let i = 0; i < numbers.length; i++) {
+  const number = numbers[i];
+  number.addEventListener('click', function (e) {
     numberPress(e.target.textContent);
   });
 }
 
 //Operation
-for (var i = 0; i < operations.length; i++) {
-  var operationBtn = operations[i];
-  operationBtn.addEventListener('click', function(e) {
+for (let i = 0; i < operations.length; i++) {
+  const operationBtn = operations[i];
+  operationBtn.addEventListener('click', function (e) {
     operation(e.target.textContent);
   });
 }
@@ -26,9 +27,9 @@ for (var i = 0; i < operations.length; i++) {
 clearBtn.addEventListener('click', clear);
 
 function numberPress(number) {
-  if (MemoryNewNumber) {
+  if (memoryNewNumber) {
     display.value = number;
-    MemoryNewNumber = false;
+    memoryNewNumber = false;
   } else {
     if (display.value === "0") {
       display.value = number;
@@ -40,49 +41,36 @@ function numberPress(number) {
 
 function operation(op) {
   let localOperationMemory = display.value;
-  if (MemoryNewNumber && MemoryPandingOperation != '=') {
-    display.value = MemoryCurrentNumber;
+  if (memoryNewNumber && memoryOperation != '=') {
+    display.value = memoryCurrentNumber;
   } else {
-    MemoryNewNumber = true;
-    if (MemoryPandingOperation === '+') {
-      MemoryCurrentNumber += parseFloat(localOperationMemory);
-    } else if (MemoryPandingOperation === '-') {
-      MemoryCurrentNumber -= parseFloat(localOperationMemory);
-    } else if (MemoryPandingOperation === '*') {
-      MemoryCurrentNumber *= parseFloat(localOperationMemory);
-    } else if (MemoryPandingOperation === '/') {
-      MemoryCurrentNumber /= parseFloat(localOperationMemory);
+    memoryNewNumber = true;
+    if (memoryOperation === '+') {
+      memoryCurrentNumber += parseFloat(localOperationMemory);
+    } else if (memoryOperation === '-') {
+      memoryCurrentNumber -= parseFloat(localOperationMemory);
+    } else if (memoryOperation === '*') {
+      memoryCurrentNumber *= parseFloat(localOperationMemory);
+    } else if (memoryOperation === '/') {
+      memoryCurrentNumber /= parseFloat(localOperationMemory);
     } else {
-      MemoryCurrentNumber = parseFloat(localOperationMemory);
+      memoryCurrentNumber = parseFloat(localOperationMemory);
     }
-    display.value = MemoryCurrentNumber;
-    MemoryPandingOperation = op;
+    display.value = memoryCurrentNumber;
+    memoryOperation = op;
   }
 };
 
-// let clear = id => id === 'clear'
-
-function cClear(id) {
+function clear(id) {
   if (id === 'clear') {
     display.value = '0';
-    MemoryCurrentNumber = 0;
-    MemoryNewNumber = false;
-    MemoryPandingOperation = "";
+    memoryCurrentNumber = 0;
+    memoryNewNumber = false;
+    memoryOperation = "";
   } else {
     display.value = '0';
-    MemoryCurrentNumber = 0;
-    MemoryNewNumber = false;
-    MemoryPandingOperation = "";
+    memoryCurrentNumber = 0;
+    memoryNewNumber = false;
+    memoryOperation = "";
   }
 };
-
-// function result() {
-//   console.log('Click Result');
-// };
-
-
-// document.getElementById('sum').onclick = function() {
-//   var input = document.getElementById('scoreboard').value;
-//   document.getElementById('scoreboard').value = eval(input);
-//
-// }
