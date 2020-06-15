@@ -1,0 +1,67 @@
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'K2D', sans-serif;
+  color: #000000;
+  margin-top: 5%;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-general {
+  width: 222px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 2px 2px;
+}
+
+.main__div {
+  width: 50px;
+  height: 50px;
+  margin: 2px;
+}
+
+.scoreboard {
+  width: 216px;
+  height: 52px;
+}
+
+.main__input {
+  width: 212px;
+  height: 45px;
+  font-size: 30px;
+  text-align: right;
+  color: #000000;
+}
+
+.main__button {
+  width: 50px;
+  height: 50px;
+  font-size: 33px;
+}
+
+.button-multiple {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+
+.button-minus,
+.button-plus,
+.button-equally {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
